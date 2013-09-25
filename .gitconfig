@@ -1,0 +1,2 @@
+[alias]
+  fr = !"git fetch origin -v; git fetch upstream -v; git rebase upstream/master"
