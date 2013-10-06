@@ -64,4 +64,11 @@ describe "Odd iterator" do
     ary.should == ary2
   end
   
+  it "should yield only odd elements" do
+    ary = [false, true]
+    odd_elements(ary) do |x|
+      x.should be_true
+    end
+  end
+  
 end
