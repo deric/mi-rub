@@ -14,7 +14,7 @@ describe MyArray do
     ary.size.should eq 3
   end
 
-  context "each" do
+  describe "each" do
     subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
@@ -42,7 +42,7 @@ describe MyArray do
 
   end
 
-  context "reverse" do
+  describe "reverse" do
     subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
@@ -76,7 +76,7 @@ describe MyArray do
     end
   end
 
-  context "pop" do
+  describe "pop" do
     subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
@@ -95,7 +95,7 @@ describe MyArray do
     end
   end
 
-  context "select" do
+  describe "select" do
     subject { MyArray.new(data) }
 
     let(:data) { [1, 2, 3, 4, 5, 6]}
@@ -106,7 +106,7 @@ describe MyArray do
     end
   end
 
-  context "collect" do
+  describe "collect" do
     subject { MyArray.new(data) }
 
     let(:data) { [ "a", "b", "c", "d" ]}
@@ -122,7 +122,7 @@ describe MyArray do
     end
   end
 
-  context "clear" do
+  describe "clear" do
 
     subject { MyArray.new(data) }
 
@@ -134,7 +134,7 @@ describe MyArray do
   end
 
 
-  context "include?" do
+  describe "include?" do
 
     subject { MyArray.new(data) }
 
@@ -152,7 +152,7 @@ describe MyArray do
   end
 
 
-  context "max" do
+  describe "max" do
 
     subject { MyArray.new(data) }
 
