@@ -14,7 +14,7 @@ describe MyArray do
     ary.size.should eq 3
   end
 
-  context "each" do
+  describe "each" do
     subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
@@ -34,7 +34,7 @@ describe MyArray do
       subject.each
     end
 
-    it "should return Enumerator" do
+    it "should return an Enumerator" do
       res = subject.each
       res.class.should eq Enumerator
       res.to_a.should eq data
@@ -42,7 +42,7 @@ describe MyArray do
 
   end
 
-  context "reverse" do
+  describe "reverse" do
     subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
@@ -76,7 +76,7 @@ describe MyArray do
     end
   end
 
-  context "pop" do
+  describe "pop" do
     subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
@@ -85,24 +85,28 @@ describe MyArray do
       subject.pop
     end
 
-    it "should remove last element" do
+    it "should return the last element" do
       elem = subject.pop
       elem.should eq 3
     end
+
+    it "should remove the last element" do
+      expect{ subject.pop }.to change{ subject.size }.from(3).to(2)
+    end
   end
 
-  context "select" do 
+  describe "select" do
     subject { MyArray.new(data) }
 
     let(:data) { [1, 2, 3, 4, 5, 6]}
 
-    it "should select even numbers" do 
-      res = subject.select { |num|  num.even?  } 
+    it "should select even numbers" do
+      res = subject.select { |num|  num.even?  }
       res.should eq [2, 4, 6]
-    end 
+    end
   end
 
-  context "collect" do
+  describe "collect" do
     subject { MyArray.new(data) }
 
     let(:data) { [ "a", "b", "c", "d" ]}
@@ -118,33 +122,37 @@ describe MyArray do
     end
   end
 
-  context "clear" do
+  describe "clear" do
 
     subject { MyArray.new(data) }
 
     let(:data) { [ "a", "b", "c", "d" ]}
 
     it "should remove all elements" do
-      subject.clear
-      subject.size.should == 0
+      expect{ subject.clear }.to change{ subject.size }.from(4).to(0)
     end
   end
 
 
-  context "include?" do
+  describe "include?" do
 
     subject { MyArray.new(data) }
 
     let(:data) { [ 2, 5, 15, 23 ]}
 
-    it "should check whether element is in array" do
-      res = subject.include? 5
+    it "should return true if an element is in array" do
+      res = subject.include?(5)
       res.should == true
+    end
+
+    it "should return false if an element is not in array" do
+      res = subject.include?('duck')
+      res.should == false
     end
   end
 
 
-  context "max" do
+  describe "max" do
 
     subject { MyArray.new(data) }
 
@@ -154,17 +162,16 @@ describe MyArray do
       res = subject.max
       res.should == 50
     end
-  end
 
-  context "max strings" do
+    context "with block" do
+      let(:data) { %w(dog horse albatross duck) }
 
-    subject { MyArray.new(data) }
-
-    let(:data) { %w(albatross dog horse) }
-
-    it "should compare length of strings" do
-      res = subject.max { |a, b| a.length <=> b.length }
-      res.should eq "albatross"
+      it "should compare length of strings" do
+        res = subject.max { |a, b| a.length <=> b.length }
+        res.should eq "albatross"
+      end
     end
+
   end
+
 end
