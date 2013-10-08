@@ -30,11 +30,27 @@ describe "basics" do
       subj = reverse_arg([5, 8, 4])
       subj.should eq [4, 8, 5]
     end
+
+    it "shouldn't modify argument" do
+      ary = [5, 8, 4]
+      arg = ary.dup
+      subj = reverse_arg(arg)
+      ary.should eq arg
+    end
   end
 
-  it "should convert to upper case" do
-    subj = capitalize_arg("hello world")
-    subj.should eq "HELLO WORLD"
+  context "upcase string" do
+    it "should convert to upper case" do
+      subj = capitalize_arg("hello world")
+      subj.should eq "HELLO WORLD"
+    end
+
+    it "shouldn't modify argument" do
+      str = "hello world"
+      arg = str.dup
+      subj = capitalize_arg(arg)
+      str.should eq arg
+    end
   end
 
   it "should return 3rd element of string" do
