@@ -4,6 +4,8 @@ require_relative '../my_array'
 
 describe MyArray do
 
+  subject { MyArray.new(data) }
+
   it "should have a method for determining size" do
     ary = MyArray.new
     ary.size.should eq 0
@@ -15,7 +17,6 @@ describe MyArray do
   end
 
   describe "each" do
-    subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
     its([0]) { should == 2 }
@@ -30,6 +31,7 @@ describe MyArray do
       d.should eq data
     end
 
+
     it "should work without passed block" do
       subject.each
     end
@@ -43,17 +45,12 @@ describe MyArray do
   end
 
   describe "reverse" do
-    subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
     let(:revdata) { [3, 5, 2]}
 
     it "should support reverse_each" do
-      d = []
-      MyArray.new([2, 5, 3]).reverse_each { |i|
-        d << i
-      }
-      d.should eq [3, 5, 2]
+      expect(subject.reverse_each.to_a).to eq (revdata)
     end
 
     it "should work without passed block" do
@@ -68,16 +65,11 @@ describe MyArray do
 
     it "should support self-modifying reverse!" do
       subject.reverse!
-      d = []
-      subject.each {|i|
-        d << i
-      }
-      d.should eq [3, 5, 2]
+      expect(subject.each.to_a).to eq([3, 5, 2])
     end
   end
 
   describe "pop" do
-    subject { MyArray.new(data) }
 
     let(:data) { [2, 5, 3]}
 
@@ -86,8 +78,7 @@ describe MyArray do
     end
 
     it "should return the last element" do
-      elem = subject.pop
-      elem.should eq 3
+      expect(subject.pop).to eq 3
     end
 
     it "should remove the last element" do
@@ -96,7 +87,6 @@ describe MyArray do
   end
 
   describe "select" do
-    subject { MyArray.new(data) }
 
     let(:data) { [1, 2, 3, 4, 5, 6]}
 
@@ -107,24 +97,31 @@ describe MyArray do
   end
 
   describe "collect" do
-    subject { MyArray.new(data) }
+    context 'strings' do
+      let(:data) { [ "a", "b", "c", "d" ]}
 
-    let(:data) { [ "a", "b", "c", "d" ]}
+      it "should iterate over elements and collect block results" do
+        res = subject.collect {|x| x << "!" }
+        res.should eq ["a!", "b!", "c!", "d!"]
+      end
 
-    it "should iterate over elements and collect block results" do
-      res = subject.collect {|x| x << "!" }
-      res.should eq ["a!", "b!", "c!", "d!"]
+      it "should return Enumerator" do
+        res = subject.collect
+        res.class.should eq Enumerator
+      end
     end
 
-    it "should return Enumerator" do
-      res = subject.collect
-      res.class.should eq Enumerator
+    context 'numbers' do
+      let(:data) { [1, 2, 3, 4]}
+
+      it 'should not modify original array' do
+        res = subject.collect {|x| x ** 2 }
+        expect( subject.each.to_a ).to eq ([1, 2, 3, 4])
+      end
     end
   end
 
   describe "clear" do
-
-    subject { MyArray.new(data) }
 
     let(:data) { [ "a", "b", "c", "d" ]}
 
@@ -135,8 +132,6 @@ describe MyArray do
 
 
   describe "include?" do
-
-    subject { MyArray.new(data) }
 
     let(:data) { [ 2, 5, 15, 23 ]}
 
@@ -154,8 +149,6 @@ describe MyArray do
 
   describe "max" do
 
-    subject { MyArray.new(data) }
-
     let(:data) { (1..50).to_a }
 
     it "should return maximum value" do
@@ -171,7 +164,6 @@ describe MyArray do
         res.should eq "albatross"
       end
     end
-
   end
 
 end
