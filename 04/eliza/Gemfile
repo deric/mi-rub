@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'rspec'
+gem 'spork', '~> 1.0rc'
+gem 'guard-spork'
+gem 'guard-rspec'
+gem 'guard'
