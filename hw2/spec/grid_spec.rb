@@ -186,4 +186,9 @@ describe Grid do
     end
   end
 
+
+  it 'has solution method' do
+    expect(subject.respond_to?(:solution)).to eq true
+    expect(subject.solution).to eq ('003020600900305001001806400008102900700000008006708200002609500800203009005010300')
+  end
 end

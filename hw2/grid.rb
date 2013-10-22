@@ -105,4 +105,9 @@ class Grid
   def valid?
 
   end
+
+  # Serialize grid values to a one line string
+  def solution
+
+  end
 end
