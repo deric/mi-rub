@@ -29,11 +29,6 @@ class Grid
 
   end
 
-  # Sets value at given position
-  def value=(x, y, value)
-
-  end
-
   # Marks number @z@ which shouldn't at position [x, y]
   def exclude(x, y, z)
 

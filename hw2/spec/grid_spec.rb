@@ -90,11 +90,11 @@ describe Grid do
     end
 
     it 'has method for getting first element' do
-      expect(subject.first.value).to eq 4
+      expect(subject.first.to_i).to eq 4
     end
 
     it 'has method for getting last element' do
-      expect(subject.last.value).to eq 9
+      expect(subject.last.to_i).to eq 9
     end
   end
 
@@ -112,7 +112,12 @@ describe Grid do
 
     it 'can set element at specific position' do
       subject[0][0] = 5
-      expect(subject[0][0]).to eq 5
+      expect(subject[0][0].to_i).to eq 5
+
+      subject[0, 3] = 9
+      expect(subject[0, 3].to_i).to eq 9
+      expect(subject[0][3].to_i).to eq subject[0, 3].to_i
+      expect(subject.value(0, 3)).to eq 9
     end
   end
 
