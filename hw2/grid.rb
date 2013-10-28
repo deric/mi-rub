@@ -3,12 +3,12 @@
 # Contains sudoku game board
 class Grid
 
-  # Created Sudoku game grid of given dimension
+  # Create Sudoku game grid of given dimension
   def initialize(dimension)
 
   end
 
-  # Return string with game board in console friendly format
+  # Return string with game board in a console friendly format
   def to_s(width = 3)
     res = ''
 
@@ -29,12 +29,12 @@ class Grid
 
   end
 
-  # Marks number @z@ which shouldn't at position [x, y]
+  # Marks number +z+ which shouldn't be at position [x, y]
   def exclude(x, y, z)
 
   end
 
-  # True when there is alread a number
+  # True when there is already a number
   def filled?(x, y)
 
   end
@@ -76,12 +76,12 @@ class Grid
 
   end
 
-  # Numer of filled cells
+  # Number of filled cells
   def filled
 
   end
 
-  # Number of row in this sudoku
+  # Number of rows in this sudoku
   def rows
 
   end
@@ -96,7 +96,7 @@ class Grid
 
   end
 
-  # Return true is no filled number break sudoku rules
+  # Return true if no filled number break sudoku rules
   def valid?
 
   end
