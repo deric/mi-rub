@@ -36,7 +36,7 @@ describe Grid do
       expect(subject[4].map { |e| e.to_i }).to eq([7, 0, 0, 0, 0, 0, 0, 0, 8])
     end
 
-    it 'has [][] method for accessing elements' do
+    it 'has [x, y] method for accessing elements' do
       expect(subject[1, 0].to_i).to eq 9
       expect(subject[2, 3].to_i).to eq 8
       expect(subject[2, 5].to_i).to eq 6
@@ -111,12 +111,10 @@ describe Grid do
     end
 
     it 'can set element at specific position' do
-      subject[0][0] = 5
-      expect(subject[0][0].to_i).to eq 5
+      subject[0, 0] = 5
+      expect(subject[0, 0].to_i).to eq 5
 
       subject[0, 3] = 9
-      expect(subject[0, 3].to_i).to eq 9
-      expect(subject[0][3].to_i).to eq subject[0, 3].to_i
       expect(subject.value(0, 3)).to eq 9
     end
   end
