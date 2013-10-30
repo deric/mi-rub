@@ -165,30 +165,30 @@ describe Grid do
     end
   end
 
-  describe 'unique hashcode' do
-    it 'has cells with unique hash' do
-      table = {}
-      subject.each do |e|
-        expect(table.key?(e.hashcode)).to eq false
-        table[e.hashcode] = true
-      end
-    end
-  end
-
-
-  describe 'unique hashcode' do
+  describe 'validates grid' do
     let(:game) { '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......' }
     it 'validates current state of grid' do
       expect(subject.valid?).to eq true
     end
 
-    it 'should be false' do
+    it 'duplicate in row' do
       input = '44....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
       g = StringParser.load(input)
       expect(g.valid?).to eq false
     end
-  end
 
+    it 'duplicate in column' do
+      input = '4.....8.543..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+      g = StringParser.load(input)
+      expect(g.valid?).to eq false
+    end
+
+    it 'duplicate in block' do
+      input = '4.....8.5.4..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+      g = StringParser.load(input)
+      expect(g.valid?).to eq false
+    end
+  end
 
   it 'has solution method' do
     expect(subject.respond_to?(:solution)).to eq true
