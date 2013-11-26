@@ -1,0 +1,3 @@
+
+class InsufficientDepositError < StandardError
+end
