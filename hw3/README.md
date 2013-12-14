@@ -19,7 +19,7 @@
 
 ## Vytvoření databáze
 
-    $ sudo su psql
+    $ sudo -s
     $ su postgres
     $ psql
     psql (9.1.10)
