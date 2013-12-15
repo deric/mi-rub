@@ -57,7 +57,7 @@ namespace :data do
     Dir.mkdir(dir) unless File.exists?(dir)
     target = 'tmp/data.zip'
     download "http://files.grouplens.org/datasets/movielens/#{dataset}.zip", target unless File.exists?(target)
-    extract(target, tmp) unless Dir.exists?("#{dir}/#{dataset}")
+    extract(target, dir) unless Dir.exists?("#{dir}/#{dataset}")
     invoke('data:import')
   end
 
