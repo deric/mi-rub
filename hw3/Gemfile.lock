@@ -205,7 +205,7 @@ DEPENDENCIES
   em-synchrony!
   factory_girl
   foreman
-  goliath
+  goliath (~> 1.0.3)
   grape
   guard-livereload
   guard-rspec

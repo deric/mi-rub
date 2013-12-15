@@ -9,7 +9,7 @@ gem 'em-synchrony' , :github => 'igrigorik/em-synchrony',
                     :require => ['em-synchrony', 'em-synchrony/activerecord', 'em-synchrony/em-http']
 gem 'yajl-ruby'
 gem 'grape'
-gem 'goliath'
+gem 'goliath', '~> 1.0.3'
 gem 'rubyzip'
 
 group :test do
