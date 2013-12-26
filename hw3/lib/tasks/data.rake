@@ -13,7 +13,8 @@ end
 
 def extract(target, tmp)
   puts "target: #{target}"
-  temp_dir = File.expand_path File.join(File.dirname(__FILE__), tmp)
+  temp_dir = File.expand_path File.join(File.dirname(__FILE__), '../../tmp')
+  puts "downloading to: #{temp_dir}"
   if File.exists?(target)
     Zip::File.open(target) do |zf|
       zf.each do |e|
